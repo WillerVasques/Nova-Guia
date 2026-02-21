@@ -358,7 +358,7 @@
         }
     })();
 
-    // --- 3. LÓGICA DE TROCA DE ABAS ---
+    // --- 3. LÓGICA DE TROCA DE ABAS E SALVAMENTO ---
     function openTab(evt, tabName) {
         const tabcontents = document.getElementsByClassName("tab-content");
         for (let i = 0; i < tabcontents.length; i++) {
@@ -371,8 +371,26 @@
         }
         
         document.getElementById(tabName).classList.add("active");
-        evt.currentTarget.classList.add("active");
+        
+        // Se foi um clique real (tem 'evt'), usa o botão clicado. Senão, busca o botão pelo nome.
+        if (evt) {
+            evt.currentTarget.classList.add("active");
+        } else {
+            document.querySelector(`.tab-button[onclick*="${tabName}"]`).classList.add("active");
+        }
+
+        // Salva a aba escolhida na memória do navegador
+        localStorage.setItem('abaSelecionada', tabName);
     }
+
+    // --- 4. RECUPERAR A ABA AO ABRIR A PÁGINA ---
+    window.addEventListener('DOMContentLoaded', () => {
+        // Verifica se há uma aba salva. Se for a primeira vez, usa 'casa' como padrão
+        const abaSalva = localStorage.getItem('abaSelecionada') || 'casa';
+        
+        // Chama a função para abrir a aba salva automaticamente
+        openTab(null, abaSalva);
+    });
 </script>
 
 </body>
