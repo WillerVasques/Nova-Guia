@@ -2,16 +2,46 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<title>Busca Otimizada com Abas</title>
+<title>Nova guia</title>
 
 <style>
     body {
-        background: #FFFFFF00;
         margin: 0;
         padding: 0;
         font-family: Arial, sans-serif;
         color: #e8eaed;
+        /* Garante que o conteúdo fique sobre o fundo animado */
+        position: relative;
+        min-height: 100vh;
     }
+
+    /* ======= NOVO: CAMADA DE FUNDO ======= */
+    #bg-layer {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        /* Transição suave de 1 segundo para trocar as imagens e o desfoque */
+        transition: background-image 1s ease-in-out, filter 1s ease-in-out;
+    }
+
+    /* Estado inicial: imagem pequena e embaçada */
+    .bg-low-res {
+        filter: blur(15px);
+        transform: scale(1.05); /* Um leve zoom para evitar bordas brancas geradas pelo blur */
+    }
+    
+    /* Estado final: imagem grande e nítida */
+    .bg-high-res {
+        filter: blur(0);
+        transform: scale(1);
+    }
+    /* ===================================== */
 
     .google-center {
         margin-top: 14vh;
@@ -74,36 +104,42 @@
     }
 
     .tab-button {
-        background: rgba(48, 49, 52, 0.2);
+        background: rgba(48, 49, 52, 0.2); /* Leve transparência para mesclar com o fundo */
         color: #9aa0a6;
-        border: 1px solid transparent; /* Evita pulo de layout */
+        border: 1px solid transparent; 
         padding: 10px 20px;
         cursor: pointer;
         border-radius: 8px 8px 0 0;
         margin: 0 5px;
         transition: all .2s ease;
         font-weight: 500;
+        backdrop-filter: blur(5px); /* Efeito de vidro jateado */
     }
 
     .tab-button:hover {
         color: #e8eaed;
-        background: rgba(58, 59, 61, 0.6);
+        background: rgba(58, 59, 61, 0.4);
     }
 
     .tab-button.active {
-        background: #303134; /* Cor sólida para a aba ativa */
+        background: rgba(48, 49, 52, 0.6);
         color: #8ab4f8;
         border: 1px solid #5f6368;
-        border-bottom: 1px solid #303134; /* Conecta com o conteúdo */
-        margin-bottom: -1px; /* Sobrepõe a borda do container */
+        border-bottom: 1px solid transparent; 
+        margin-bottom: 1px; 
         z-index: 2;
     }
 
     .tab-content {
         display: none;
         padding: 20px;
-        border-top: 1px solid #5f6368; /* Linha divisória sutil */
+        border-top: 1px solid #5f6368; 
         margin-top: -1px;
+        background: rgba(48, 49, 52, 0.2); /* Transparência no container dos links */
+        backdrop-filter: blur(10px);
+        border-radius: 12px;
+        margin-left: 5%;
+        margin-right: 5%;
     }
 
     .tab-content.active {
@@ -113,10 +149,9 @@
     /* ======= ATALHOS ======= */
     .atalhos-container {
         margin-top: 15px;
-        width: 90%;
+        width: 100%;
         max-width: 1100px;
         display: grid;
-        /* Mantido layout responsivo padrão (não fixa 9 por linha) */
         grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
         gap: 15px;
         row-gap: 30px;
@@ -139,7 +174,7 @@
     }
 
     .atalho:hover {
-        background: rgba(255, 255, 255, 0.1);
+        background: rgba(255, 255, 255, 0.15);
     }
 
     .atalho img {
@@ -148,7 +183,7 @@
         border-radius: 50%;
         background: #fff;
         padding: 4px;
-        object-fit: contain; /* Garante que ícones não distorçam */
+        object-fit: contain; 
     }
 
     .atalho span {
@@ -160,10 +195,13 @@
         overflow: hidden;
         text-overflow: ellipsis;
         max-width: 100%;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.8); /* Ajuda na leitura caso o fundo seja claro */
     }
 </style>
 </head>
 <body>
+
+<div id="bg-layer" class="bg-low-res"></div>
 
 <div class="google-center">
   <form method="get" action="https://www.google.com/search" target="_blank">
@@ -191,12 +229,33 @@
 <div id="estudos" class="tab-content"></div>
 
 <script>
+    // --- LÓGICA DE FUNDO PROGRESSIVO (BLUR-UP) ---
+    // Substitua estas URLs pelas suas imagens
+    const lowResUrl = "https://i.postimg.cc/MGm80nxX/Esquadra_compactado.jpg"; 
+    const highResUrl = "https://i.postimg.cc/zfj9b4Sk/Esquadra.jpg";
+
+    const bgLayer = document.getElementById('bg-layer');
+    
+    // 1. Aplica a imagem de baixa resolução imediatamente
+    bgLayer.style.backgroundImage = `url('${lowResUrl}')`;
+
+    // 2. Cria um objeto de imagem invisível para baixar a imagem pesada em 2º plano
+    const imgLoader = new Image();
+    imgLoader.src = highResUrl;
+
+    // 3. Quando a imagem grande terminar de baixar de acordo com a internet do usuário...
+    imgLoader.onload = () => {
+        bgLayer.style.backgroundImage = `url('${highResUrl}')`;
+        bgLayer.classList.remove('bg-low-res');
+        bgLayer.classList.add('bg-high-res');
+    };
+    // ----------------------------------------------
+
     // --- 1. SEUS DADOS CENTRALIZADOS AQUI ---
     const bancoDeLinks = {
         "trabalho": [
             { nome: "Microsoft", url: "https://www.microsoft.com" },
             { nome: "Office",    url: "https://www.office.com" },
-            // Adicione mais links de trabalho aqui
         ],
         "casa": [
             { nome: "Gmail",         url: "https://mail.google.com/mail/u/0/#inbox",
@@ -233,17 +292,15 @@
             { nome: "Gramática",     url: "https://www.novagramaticaonline.com/" },
             { nome: "Calcule Mais",  url: "https://calculemais.com.br/" },
             { nome: "IOB Concursos", url: "https://www.youtube.com/@IOBconcursos/playlists" },
-            
-            // --- EXEMPLO DE ÍCONE MANUAL AQUI ---
             { 
                 nome: "Manual Exemplo",  
                 url: "https://github.com", 
-                icone: "https://cdn-icons-png.flaticon.com/512/25/25231.png" // Basta adicionar a linha 'icone'
+                icone: "https://cdn-icons-png.flaticon.com/512/25/25231.png" 
             } 
         ]
     };
 
-    // --- 2. LÓGICA DE RENDERIZAÇÃO (Automática) ---
+    // --- 2. LÓGICA DE RENDERIZAÇÃO ---
     (function renderAllTabs() {
         for (const [idAba, links] of Object.entries(bancoDeLinks)) {
             const tabDiv = document.getElementById(idAba);
@@ -263,11 +320,9 @@
 
                 let iconUrl;
 
-                // --- VERIFICA SE EXISTE ÍCONE MANUAL ---
                 if (item.icone) {
                     iconUrl = item.icone;
                 } else {
-                    // Lógica Automática (Híbrida: Google + Yandex)
                     let dominio;
                     try {
                         dominio = new URL(item.url).hostname;
@@ -285,9 +340,8 @@
                 img.alt = item.nome;
                 img.loading = "lazy";
 
-                // Tratamento de erro na imagem: se a API falhar, carrega um ícone padrão transparente ou globo
                 img.onerror = function() {
-                    this.onerror = null; // Evita loop infinito
+                    this.onerror = null; 
                     this.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%239aa0a6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>';
                 };
 
