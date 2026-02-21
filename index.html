@@ -100,7 +100,7 @@
     .tabs {
         display: flex;
         justify-content: center;
-        margin-top: 20px;
+        margin-top: 35px;
     }
 
     .tab-button {
@@ -138,8 +138,12 @@
         background: rgba(48, 49, 52, 0.2); /* Transparência no container dos links */
         backdrop-filter: blur(10px);
         border-radius: 12px;
-        margin-left: 5%;
-        margin-right: 5%;
+        
+        /* --- NOVAS REGRAS DE LARGURA --- */
+        width: 90%; /* Ocupa 90% em telas pequenas (celulares) */
+        max-width: 950px; /* Trava o crescimento em 800 pixels em telas grandes */
+        margin-left: auto; /* Centraliza a caixa */
+        margin-right: auto; /* Centraliza a caixa */
     }
 
     .tab-content.active {
