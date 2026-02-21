@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Busca Otimizada com Abas</title>
+
+<style>
+    body {
+        background: #FFFFFF00;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        color: #e8eaed;
+    }
+
+    .google-center {
+        margin-top: 14vh;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .google-center form {
+        width: 100%;
+        max-width: 580px;
+    }
+
+    .search-area {
+        position: relative;
+        display: flex;
+        align-items: center;
+        background: #303134;
+        border: 1px solid #5f6368;
+        border-radius: 24px;
+        padding: 10px 16px 10px 52px;
+        box-shadow: 0 1px 6px rgba(0,0,0,0.6);
+        transition: box-shadow .25s ease, border-color .25s ease, background .25s ease;
+    }
+
+    .search-area:hover {
+        background: #3a3b3d;
+        box-shadow: 0 1px 8px rgba(0,0,0,0.75);
+    }
+
+    .search-area:focus-within {
+        border-color: #8ab4f8;
+        box-shadow: 0 1px 8px rgba(138,180,248,0.45);
+        background: #303134;
+    }
+
+    .search-icon {
+        position: absolute;
+        left: 18px;
+        width: 22px;
+        height: 22px;
+        fill: #9aa0a6;
+        pointer-events: none;
+    }
+
+    .search-area input[type="search"] {
+        width: 100%;
+        border: none;
+        outline: none;
+        font-size: 16px;
+        background: transparent;
+        color: #e8eaed;
+    }
+
+    /* ======= ABAS ======= */
+    .tabs {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .tab-button {
+        background: rgba(48, 49, 52, 0.2);
+        color: #9aa0a6;
+        border: 1px solid transparent; /* Evita pulo de layout */
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 8px 8px 0 0;
+        margin: 0 5px;
+        transition: all .2s ease;
+        font-weight: 500;
+    }
+
+    .tab-button:hover {
+        color: #e8eaed;
+        background: rgba(58, 59, 61, 0.6);
+    }
+
+    .tab-button.active {
+        background: #303134; /* Cor sólida para a aba ativa */
+        color: #8ab4f8;
+        border: 1px solid #5f6368;
+        border-bottom: 1px solid #303134; /* Conecta com o conteúdo */
+        margin-bottom: -1px; /* Sobrepõe a borda do container */
+        z-index: 2;
+    }
+
+    .tab-content {
+        display: none;
+        padding: 20px;
+        border-top: 1px solid #5f6368; /* Linha divisória sutil */
+        margin-top: -1px;
+    }
+
+    .tab-content.active {
+        display: block;
+    }
+
+    /* ======= ATALHOS ======= */
+    .atalhos-container {
+        margin-top: 15px;
+        width: 90%;
+        max-width: 1100px;
+        display: grid;
+        /* Mantido layout responsivo padrão (não fixa 9 por linha) */
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+        gap: 15px;
+        row-gap: 30px;
+        justify-items: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .atalho {
+        width: 90px;
+        text-align: center;
+        cursor: pointer;
+        padding: 10px;
+        border-radius: 8px;
+        transition: background .2s;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .atalho:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+
+    .atalho img {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #fff;
+        padding: 4px;
+        object-fit: contain; /* Garante que ícones não distorçam */
+    }
+
+    .atalho span {
+        display: block;
+        margin-top: 8px;
+        font-size: 13px;
+        color: #e8eaed;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+    }
+</style>
+</head>
+<body>
+
+<div class="google-center">
+  <form method="get" action="https://www.google.com/search" target="_blank">
+    <div class="search-area">
+      <svg class="search-icon" viewBox="0 0 24 24">
+         <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 
+                  6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 
+                  4.99L20.49 19l-4.99-5zm-6 0C8.01 14 6 11.99 6 
+                  9.5S8.01 5 10.5 5 15 7.01 15 9.5 
+                  12.99 14 10.5 14z"/>
+      </svg>
+      <input type="search" name="q" placeholder="Pesquisar no Google..." required autofocus>
+    </div>
+  </form>
+</div>
+
+<div class="tabs">
+    <button class="tab-button" onclick="openTab(event, 'trabalho')">Trabalho</button>
+    <button class="tab-button active" onclick="openTab(event, 'casa')">Casa</button>
+    <button class="tab-button" onclick="openTab(event, 'estudos')">Estudos</button>
+</div>
+
+<div id="trabalho" class="tab-content"></div>
+<div id="casa" class="tab-content active"></div>
+<div id="estudos" class="tab-content"></div>
+
+<script>
+    // --- 1. SEUS DADOS CENTRALIZADOS AQUI ---
+    const bancoDeLinks = {
+        "trabalho": [
+            { nome: "Microsoft", url: "https://www.microsoft.com" },
+            { nome: "Office",    url: "https://www.office.com" },
+            // Adicione mais links de trabalho aqui
+        ],
+        "casa": [
+            { nome: "Gmail",         url: "https://mail.google.com/mail/u/0/#inbox",
+              icone: "https://www.gstatic.com/marketing-cms/assets/images/66/ac/14b165e647fd85c824bfbe5d6bc5/gmail.webp=s48-fcrop64=1,00000000ffffffff-rw"},
+            { nome: "Calendário",    url: "https://calendar.google.com/calendar/u/0/r",
+              icone: "https://ssl.gstatic.com/calendar/images/dynamiclogo_2020q4/calendar_19_2x.png"},
+            { nome: "Tarefas",       url: "https://tasks.google.com",
+              icone: "https://fonts.gstatic.com/s/i/productlogos/tasks/v10/192px.svg"}, 
+            { nome: "Keep",          url: "https://keep.google.com/u/0/#home",
+              icone: "https://www.gstatic.com/images/branding/product/1x/keep_2020q4_48dp.png"},
+            { nome: "FutureTools",   url: "https://www.futuretools.io/" },
+            { nome: "NotebookLM",    url: "https://notebooklm.google.com/",
+              icone: "https://static0.xdaimages.com/wordpress/wp-content/uploads/2025/03/notebooklm-removebg-preview.png?q=70&fit=contain&w=420&dpr=1"},
+            { nome: "Gemini",        url: "https://gemini.google.com/app?hl=pt-BR" },
+            { nome: "ChatGPT",       url: "https://chatgpt.com/" },
+            { nome: "Copilot",       url: "https://copilot.microsoft.com/" },
+            { nome: "Gdrive",        url: "https://drive.google.com/drive/u/0/my-drive",
+              icone: "https://www.gstatic.com/marketing-cms/assets/images/e8/4f/69d708b2455397d7b88b0312f7c5/google-drive.webp=s48-fcrop64=1,00000000ffffffff-rw"},
+            { nome: "Microsoft 365", url: "https://m365.cloud.microsoft/apps/" },
+            { nome: "SIGAA",         url: "https://si3.ufc.br/sigaa/verTelaLogin.do",
+              icone: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhtt5-DNknOSKYQKWcR3subKjzFrbHovCYUf9t0Jv9XvEdJXEAB-2nBJNgBsMcMs5diQ4jNOw6YeAhZDHkO8Mche9aMUVSWYV9zTX7NAgb-POr5X6_gu8eInqUWx37C9nz71ocK5ekMs98/s400/brasao.png"},
+            { nome: "Servidores",    url: "https://portaldatransparencia.gov.br/servidores" },
+            { nome: "Pelando",       url: "https://www.pelando.com.br/" },
+            { nome: "Wise Up",       url: "https://online.wiseup.com/login?lang=pt" },
+            { nome: "YouTube",       url: "https://www.youtube.com/" },
+            { nome: "Compilador",    url: "https://onecompiler.com/" },
+            { nome: "TopAI Tools",   url: "https://topai.tools/categories" },
+            { nome: "Reddit",        url: "https://www.reddit.com/r/concursospublicos/" }
+        ],
+        "estudos": [
+            { nome: "Aulas BB",      url: "https://www.direcaoconcursos.com.br" },
+            { nome: "Jurisway",      url: "https://jurisway.org.br/" },
+            { nome: "Kultivi",       url: "https://kultivi.com/cursos/concursos" },
+            { nome: "Gramática",     url: "https://www.novagramaticaonline.com/" },
+            { nome: "Calcule Mais",  url: "https://calculemais.com.br/" },
+            { nome: "IOB Concursos", url: "https://www.youtube.com/@IOBconcursos/playlists" },
+            
+            // --- EXEMPLO DE ÍCONE MANUAL AQUI ---
+            { 
+                nome: "Manual Exemplo",  
+                url: "https://github.com", 
+                icone: "https://cdn-icons-png.flaticon.com/512/25/25231.png" // Basta adicionar a linha 'icone'
+            } 
+        ]
+    };
+
+    // --- 2. LÓGICA DE RENDERIZAÇÃO (Automática) ---
+    (function renderAllTabs() {
+        for (const [idAba, links] of Object.entries(bancoDeLinks)) {
+            const tabDiv = document.getElementById(idAba);
+            if (!tabDiv) continue; 
+
+            const gridContainer = document.createElement('div');
+            gridContainer.className = 'atalhos-container';
+            
+            const fragment = document.createDocumentFragment();
+
+            links.forEach(item => {
+                const linkEl = document.createElement('a');
+                linkEl.href = item.url;
+                linkEl.className = 'atalho';
+                linkEl.target = '_blank';
+                linkEl.rel = 'noopener noreferrer';
+
+                let iconUrl;
+
+                // --- VERIFICA SE EXISTE ÍCONE MANUAL ---
+                if (item.icone) {
+                    iconUrl = item.icone;
+                } else {
+                    // Lógica Automática (Híbrida: Google + Yandex)
+                    let dominio;
+                    try {
+                        dominio = new URL(item.url).hostname;
+                    } catch (e) { dominio = 'yandex.com'; } 
+                    
+                    if (dominio.includes('google.com')) {
+                        iconUrl = `https://www.google.com/s2/favicons?domain=${dominio}&sz=64`;
+                    } else {
+                        iconUrl = `https://favicon.yandex.net/favicon/${dominio}`;
+                    }
+                }
+
+                const img = document.createElement('img');
+                img.src = iconUrl;
+                img.alt = item.nome;
+                img.loading = "lazy";
+
+                // Tratamento de erro na imagem: se a API falhar, carrega um ícone padrão transparente ou globo
+                img.onerror = function() {
+                    this.onerror = null; // Evita loop infinito
+                    this.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="%239aa0a6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>';
+                };
+
+                const span = document.createElement('span');
+                span.textContent = item.nome;
+
+                linkEl.appendChild(img);
+                linkEl.appendChild(span);
+                fragment.appendChild(linkEl);
+            });
+
+            gridContainer.appendChild(fragment);
+            tabDiv.appendChild(gridContainer);
+        }
+    })();
+
+    // --- 3. LÓGICA DE TROCA DE ABAS ---
+    function openTab(evt, tabName) {
+        const tabcontents = document.getElementsByClassName("tab-content");
+        for (let i = 0; i < tabcontents.length; i++) {
+            tabcontents[i].classList.remove("active");
+        }
+        
+        const tabbuttons = document.getElementsByClassName("tab-button");
+        for (let i = 0; i < tabbuttons.length; i++) {
+            tabbuttons[i].classList.remove("active");
+        }
+        
+        document.getElementById(tabName).classList.add("active");
+        evt.currentTarget.classList.add("active");
+    }
+</script>
+
+</body>
+</html>
