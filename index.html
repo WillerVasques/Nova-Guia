@@ -329,13 +329,10 @@
                     let dominio;
                     try {
                         dominio = new URL(item.url).hostname;
-                    } catch (e) { dominio = 'yandex.com'; } 
+                    } catch (e) { dominio = 'google.com'; } 
                     
-                    if (dominio.includes('google.com')) {
-                        iconUrl = `https://www.google.com/s2/favicons?domain=${dominio}&sz=64`;
-                    } else {
-                        iconUrl = `https://favicon.yandex.net/favicon/${dominio}`;
-                    }
+                    // SOLUÇÃO: Usar a API do Google para TODOS os sites com resolução de 128px
+                    iconUrl = `https://www.google.com/s2/favicons?domain=${dominio}&sz=128`;
                 }
 
                 const img = document.createElement('img');
