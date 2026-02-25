@@ -208,7 +208,7 @@
 <div id="bg-layer" class="bg-low-res"></div>
 
 <div class="google-center">
-  <form method="get" action="https://www.google.com/search" target="_blank">
+  <form method="get" action="https://www.google.com/search" target="_self">
     <div class="search-area">
       <svg class="search-icon" viewBox="0 0 24 24">
          <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 
@@ -321,7 +321,7 @@
                 const linkEl = document.createElement('a');
                 linkEl.href = item.url;
                 linkEl.className = 'atalho';
-                linkEl.target = '_blank';
+                linkEl.target = '_self';
                 linkEl.rel = 'noopener noreferrer';
 
                 let iconUrl;
