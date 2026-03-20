@@ -18,7 +18,6 @@ imgLoader.onload = () => {
     bgLayer.classList.remove('bg-low-res');
     bgLayer.classList.add('bg-high-res');
 };
-// ----------------------------------------------
 
 // --- 1. SEUS DADOS CENTRALIZADOS AQUI ---
 const bancoDeLinks = {
