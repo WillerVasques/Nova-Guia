@@ -1,6 +1,6 @@
 // --- LÓGICA DE FUNDO PROGRESSIVO (BLUR-UP) ---
 // Substitua estas URLs pelas suas imagens
-const lowResUrl = "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/Esquadra-compactado.jpg"; 
+const lowResUrl  = "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/Esquadra-compactado.jpg"; 
 const highResUrl = "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/Esquadra.jpg";
 
 const bgLayer = document.getElementById('bg-layer');
@@ -23,17 +23,17 @@ imgLoader.onload = () => {
 const bancoDeLinks = {
     "trabalho": [
         { nome: "Bussola",    url: "http://bussola.mb/search?site=default_collection&client=default_frontend&output=xml_no_dtd&proxystylesheet=default_frontend&proxycustom=%3CHOME/%3E",
-          icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/bussola_redimensionado.jpg"},        
+         icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/bussola_redimensionado.jpg"},        
         { nome: "Sigad",    url: "https://prod.sigad.mar.mil.br/apps/mensagemAdministrativa/pesquisar-mensagens",
-          icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/supp.png"},
+         icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/supp.png"},
         { nome: "Zimbra",    url: "https://webmail.marinha.mil.br" },
         { nome: "Sigdem",    url: "https://clti-com3dn2.com3dn.mb/cpftza/aplica/sigdem20/cpftza.nsf/BuscaPesquisa?Openform",
-          icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/SiGDEMLogo.png"},
+         icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/SiGDEMLogo.png"},
         { nome: "CPCE",    url: "http://www.cpce.mb/drupal/?q=file/lista-de-email",
-          icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/Brasao-novo-cpce.jpeg"},
+         icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/Brasao-novo-cpce.jpeg"},
         
         { nome: "Keep",    url: "https://keep.google.com",
-          icone: "https://cdn-icons-png.flaticon.com/128/2991/2991161.png"},
+         icone: "https://cdn-icons-png.flaticon.com/128/2991/2991161.png"},
         { nome: "Gemini",    url: "https://gemini.google.com/app?hl=pt-BR" },
         { nome: "ChatGPT",    url: "https://chatgpt.com" },
         { nome: "Copilot",    url: "https://copilot.microsoft.com" },
@@ -62,9 +62,9 @@ const bancoDeLinks = {
         { nome: "BONO",    url: "https://bono.marinha.mil.br/bono/index",
          icone: "https://upload.wikimedia.org/wikipedia/commons/7/70/Logo_of_the_Brazilian_Navy_%28symbol%29.svg"},
         { nome: "SisBol",    url: "https://www.dpm.mb/sisbol-externo",
-         icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/sisbol.gif"},
+         icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/sisbol.jpg"},
         { nome: "Trigramas",    url: "http://www.ciaw.mb/drupal/sites/default/files/arquivoszipados/Lista%20de%20Trigramas.pdf",
-          icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/trigramas.png"},
+         icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/trigramas.png"},
         { nome: "Transparencia",    url: "https://portaldatransparencia.gov.br/servidores" },
         
         { nome: "MS Cloud",    url: "https://m365.cloud.microsoft/search" },
@@ -78,27 +78,27 @@ const bancoDeLinks = {
     ],
     "casa": [
         { nome: "Gmail",         url: "https://mail.google.com/mail/u/0/#inbox",
-          icone: "https://cdn-icons-png.flaticon.com/128/5968/5968534.png"},
+         icone: "https://cdn-icons-png.flaticon.com/128/5968/5968534.png"},
         { nome: "Calendário",    url: "https://calendar.google.com/calendar/u/0/r",
-          icone: "https://cdn-icons-png.flaticon.com/128/5968/5968499.png"},
+         icone: "https://cdn-icons-png.flaticon.com/128/5968/5968499.png"},
         { nome: "Tarefas",       url: "https://tasks.google.com",
-          icone: "https://fonts.gstatic.com/s/i/productlogos/tasks/v10/192px.svg"}, 
+         icone: "https://fonts.gstatic.com/s/i/productlogos/tasks/v10/192px.svg"}, 
         { nome: "Keep",          url: "https://keep.google.com/u/0/#home",
-          icone: "https://cdn-icons-png.flaticon.com/128/2991/2991161.png"},
+         icone: "https://cdn-icons-png.flaticon.com/128/2991/2991161.png"},
         { nome: "FutureTools",   url: "https://www.futuretools.io/" },
         { nome: "NotebookLM",    url: "https://notebooklm.google.com/",
-          icone: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqAKlh4D6yGleH-NKMlxKzAF7rZytqvFuEGQ&s"},
+         icone: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqAKlh4D6yGleH-NKMlxKzAF7rZytqvFuEGQ&s"},
         { nome: "Gemini",        url: "https://gemini.google.com/app?hl=pt-BR" },
         { nome: "ChatGPT",       url: "https://chatgpt.com/",
-          icone: "https://img.icons8.com/?size=100&id=TUk7vxvtu6hX&format=png&color=000000"},
+         icone: "https://img.icons8.com/?size=100&id=TUk7vxvtu6hX&format=png&color=000000"},
         { nome: "Copilot",       url: "https://copilot.microsoft.com/",
-          icone: "https://img.icons8.com/?size=100&id=PxQoyT1s0uFh&format=png&color=000000"},
+         icone: "https://img.icons8.com/?size=100&id=PxQoyT1s0uFh&format=png&color=000000"},
         { nome: "Gdrive",        url: "https://drive.google.com/drive/u/0/my-drive",
-          icone: "https://img.icons8.com/?size=100&id=ya4CrqO7PgnY&format=png&color=000000"},
+         icone: "https://img.icons8.com/?size=100&id=ya4CrqO7PgnY&format=png&color=000000"},
         { nome: "Microsoft 365", url: "https://m365.cloud.microsoft/apps/",
-          icone: "https://img.icons8.com/?size=100&id=g7UKWvv49CoI&format=png&color=000000"},
+         icone: "https://img.icons8.com/?size=100&id=g7UKWvv49CoI&format=png&color=000000"},
         { nome: "SIGAA",         url: "https://si3.ufc.br/sigaa/verTelaLogin.do",
-          icone: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhtt5-DNknOSKYQKWcR3subKjzFrbHovCYUf9t0Jv9XvEdJXEAB-2nBJNgBsMcMs5diQ4jNOw6YeAhZDHkO8Mche9aMUVSWYV9zTX7NAgb-POr5X6_gu8eInqUWx37C9nz71ocK5ekMs98/s400/brasao.png"},
+         icone: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhtt5-DNknOSKYQKWcR3subKjzFrbHovCYUf9t0Jv9XvEdJXEAB-2nBJNgBsMcMs5diQ4jNOw6YeAhZDHkO8Mche9aMUVSWYV9zTX7NAgb-POr5X6_gu8eInqUWx37C9nz71ocK5ekMs98/s400/brasao.png"},
         { nome: "Servidores",    url: "https://portaldatransparencia.gov.br/servidores" },
         { nome: "Pelando",       url: "https://www.pelando.com.br/" },
         { nome: "Wise Up",       url: "https://online.wiseup.com/login?lang=pt" },
