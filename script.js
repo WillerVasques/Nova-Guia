@@ -22,11 +22,15 @@ imgLoader.onload = () => {
 // --- 1. SEUS DADOS CENTRALIZADOS AQUI ---
 const bancoDeLinks = {
     "trabalho": [
-        { nome: "Bussola",    url: "http://bussola.mb/search?site=default_collection&client=default_frontend&output=xml_no_dtd&proxystylesheet=default_frontend&proxycustom=%3CHOME/%3E" },
-        { nome: "Sigad",    url: "https://prod.sigad.mar.mil.br/apps/mensagemAdministrativa/pesquisar-mensagens" },
+        { nome: "Bussola",    url: "http://bussola.mb/search?site=default_collection&client=default_frontend&output=xml_no_dtd&proxystylesheet=default_frontend&proxycustom=%3CHOME/%3E",
+          icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/bussola_redimensionado.jpg"},        
+        { nome: "Sigad",    url: "https://prod.sigad.mar.mil.br/apps/mensagemAdministrativa/pesquisar-mensagens",
+          icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/supp.png"},
         { nome: "Zimbra",    url: "https://webmail.marinha.mil.br" },
-        { nome: "Sigdem",    url: "https://clti-com3dn2.com3dn.mb/cpftza/aplica/sigdem20/cpftza.nsf/BuscaPesquisa?Openform" },
-        { nome: "CPCE",    url: "http://www.cpce.mb/drupal/?q=file/lista-de-email" },
+        { nome: "Sigdem",    url: "https://clti-com3dn2.com3dn.mb/cpftza/aplica/sigdem20/cpftza.nsf/BuscaPesquisa?Openform",
+          icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/SiGDEMLogo.png"},
+        { nome: "CPCE",    url: "http://www.cpce.mb/drupal/?q=file/lista-de-email",
+          icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/Brasao-novo-cpce.jpeg"},
         
         { nome: "Keep",    url: "https://keep.google.com",
           icone: "https://cdn-icons-png.flaticon.com/128/2991/2991161.png"},
@@ -54,18 +58,22 @@ const bancoDeLinks = {
         { nome: "Calendário",    url: "https://calendar.google.com/calendar/u/0/r?pli=1",
          icone: "https://cdn-icons-png.flaticon.com/128/5968/5968499.png"},
         { nome: "Compartilha",    url: "https://www.compartilhamentomb.marinha.mil.br",
-         icone: "https://www.compartilhamentomb.marinha.mil.br/core/img/logo/logo.svg"},
+         icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/compartilha.png"},
         { nome: "BONO",    url: "https://bono.marinha.mil.br/bono/index",
          icone: "https://upload.wikimedia.org/wikipedia/commons/7/70/Logo_of_the_Brazilian_Navy_%28symbol%29.svg"},
         { nome: "SisBol",    url: "https://www.dpm.mb/sisbol-externo" },
-        { nome: "Trigramas",    url: "http://www.ciaw.mb/drupal/sites/default/files/arquivoszipados/Lista%20de%20Trigramas.pdf" },
+        { nome: "Trigramas",    url: "http://www.ciaw.mb/drupal/sites/default/files/arquivoszipados/Lista%20de%20Trigramas.pdf",
+          icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/trigramas.png"},
         { nome: "Transparencia",    url: "https://portaldatransparencia.gov.br/servidores" },
         
         { nome: "MS Cloud",    url: "https://m365.cloud.microsoft/search" },
         
-        { nome: "CRSM",      url: "https://com3dn.github.io/crsm/index.html" }, 
-        { nome: "Pesquisa Marítima",   url: "https://rimururrc.github.io/ope-mar/prompts.html" },
-        { nome: "Análise Crítica",     url: "https://github.com/rimururrc/MetAnPesq" },
+        { nome: "CRSM",      url: "https://com3dn.github.io/crsm/index.html",
+         icone: "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://github.com&size=128"},
+        { nome: "Pesquisa Marítima",   url: "https://rimururrc.github.io/ope-mar/prompts.html",
+         icone: "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://github.com&size=128"},
+        { nome: "Análise Crítica",     url: "https://github.com/rimururrc/MetAnPesq",
+         icone: "https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=http://github.com&size=128"},
     ],
     "casa": [
         { nome: "Gmail",         url: "https://mail.google.com/mail/u/0/#inbox",
