@@ -120,6 +120,9 @@ const bancoDeLinks = {
         { nome: "IOB Concursos", url: "https://www.youtube.com/@IOBconcursos/playlists" },
         { nome: "Anna’s Archive", url: "https://annas-archive.li/search?index=&lang=pt" },
         { nome: "WeLib", url: "https://pt.welib.org/" },
+    ],
+    "tfm": [
+        { nome: "Treino Mestre",      url: "https://treinomestre.com.br/" },
     ]
 };
 
