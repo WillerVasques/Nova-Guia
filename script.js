@@ -61,6 +61,8 @@ const bancoDeLinks = {
          icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/compartilha.png"},
         { nome: "BONO",    url: "https://bono.marinha.mil.br/bono/index",
          icone: "https://upload.wikimedia.org/wikipedia/commons/7/70/Logo_of_the_Brazilian_Navy_%28symbol%29.svg"},
+        { nome: "TERDIS",    url: "https://com3dn.mb/uso-geral/dn-30/view/pmpe",
+         icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/TERDIS.jpg"},
         { nome: "SisBol",    url: "https://www.dpm.mb/sisbol-externo",
          icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/sisbol.jpg"},
         { nome: "Trigramas",    url: "http://www.ciaw.mb/drupal/sites/default/files/arquivoszipados/Lista%20de%20Trigramas.pdf",
