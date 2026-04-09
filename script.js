@@ -216,3 +216,9 @@ window.addEventListener('DOMContentLoaded', () => {
     // Chama a função para abrir a aba salva automaticamente
     openTab(null, abaSalva);
 });
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+        .then(() => console.log('Service Worker registrado'))
+        .catch(err => console.error('Erro no SW:', err));
+}
