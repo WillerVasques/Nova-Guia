@@ -1,7 +1,7 @@
 // --- LÓGICA DE FUNDO PROGRESSIVO (BLUR-UP) ---
 // Substitua estas URLs pelas suas imagens
-const lowResUrl  = "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/Esquadra-compactado.jpg"; 
-const highResUrl = "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/Esquadra.jpg";
+const lowResUrl  = "https://cdn.jsdelivr.net/gh/WillerVasques/Nova-Guia@main/Imagens/Esquadra-compactado.jpg";
+const highResUrl = "https://cdn.jsdelivr.net/gh/WillerVasques/Nova-Guia@main/Imagens/Esquadra.jpg";
 
 const bgLayer = document.getElementById('bg-layer');
 
