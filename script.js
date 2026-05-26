@@ -52,6 +52,8 @@ const bancoDeLinks = {
          icone: "https://www.gstatic.com/images/branding/product/1x/sheets_2020q4_48dp.png"},
         { nome: "AFTA",    url: "https://docs.google.com/spreadsheets/d/1GnDE3mbJ7o_p_UZNMhqmFJuHYgdk_1AC71n2nUbIdbg/edit?gid=0#gid=0", 
          icone: "https://www.gstatic.com/images/branding/product/1x/sheets_2020q4_48dp.png"},
+        { nome: "Protocolo",    url: "https://docs.google.com/spreadsheets/d/169tb9ju8pOJ1wjiW3OHcUdxqSrsZVSeOVwoFeOGAJSw/edit?usp=sharing", 
+         icone: "https://www.gstatic.com/images/branding/product/1x/sheets_2020q4_48dp.png"},
         { nome: "Earth",    url: "https://earth.google.com/web" },
         { nome: "Pelando",    url: "https://www.pelando.com.br/busca/tablet" },
 
