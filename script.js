@@ -31,6 +31,8 @@ const bancoDeLinks = {
          icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/SiGDEMLogo.png"},
         { nome: "CPCE",    url: "http://www.cpce.mb/drupal/?q=file/lista-de-email",
          icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/Brasao-novo-cpce.jpeg"},
+        { nome: "Catálogo",    url: "https://catalogo.prod.dadm.mb/contatos" },
+        
         
         { nome: "Keep",    url: "https://keep.google.com",
          icone: "https://cdn-icons-png.flaticon.com/128/2991/2991161.png"},
