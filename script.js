@@ -133,37 +133,43 @@ const bancoDeLinks = {
     ]
 };
 
-// --- 2. LÓGICA DE RENDERIZAÇÃO ---
-(function renderAllTabs() {
+// Carrega os links salvos no localStorage, ou usa os padrões caso não existam
+let bancoDeLinks = JSON.parse(localStorage.getItem('bancoDeLinksSalvos')) || bancoDeLinks;
+
+// --- 2. LÓGICA DE RENDERIZAÇÃO COM DRAG & DROP ---
+function renderAllTabs() {
     for (const [idAba, links] of Object.entries(bancoDeLinks)) {
         const tabDiv = document.getElementById(idAba);
         if (!tabDiv) continue; 
 
+         // Limpa a aba antes de renderizar (necessário para atualizar após o drop)
+        tabDiv.innerHTML = '';
+
         const gridContainer = document.createElement('div');
         gridContainer.className = 'atalhos-container';
+
+        gridContainer.dataset.aba = idAba; // Identifica a qual aba pertence o container
         
         const fragment = document.createDocumentFragment();
 
-        links.forEach(item => {
+        links.forEach((item, index) => {
             const linkEl = document.createElement('a');
             linkEl.href = item.url;
             linkEl.className = 'atalho';
             linkEl.target = '_self';
             linkEl.rel = 'noopener noreferrer';
 
-            let iconUrl;
+            // Ativa o recurso de arrastar do HTML5
+            linkEl.draggable = true;
+            linkEl.dataset.index = index; // Guarda a posição atual do item
 
-            if (item.icone) {
-                iconUrl = item.icone;
-            } else {
-                let dominio;
-                try {
-                    dominio = new URL(item.url).hostname;
-                } catch (e) { dominio = 'google.com'; } 
-                
-                // SOLUÇÃO: Usar a API do Google para TODOS os sites com resolução de 128px
-                iconUrl = `https://www.google.com/s2/favicons?domain=${dominio}&sz=128`;
-            }
+            // --- EVENTOS DRAG AND DROP ---
+            linkEl.addEventListener('dragstart', handleDragStart);
+            linkEl.addEventListener('dragover', handleDragOver);
+            linkEl.addEventListener('drop', handleDrop);
+            linkEl.addEventListener('dragend', handleDragEnd);
+
+            let iconUrl = item.icone ? item.icone : `https://www.google.com/s2/favicons?domain=${new URL(item.url).hostname}&sz=128`;
 
             const img = document.createElement('img');
             img.src = iconUrl;
@@ -186,9 +192,62 @@ const bancoDeLinks = {
         gridContainer.appendChild(fragment);
         tabDiv.appendChild(gridContainer);
     }
-})();
+}
 
-// --- 3. LÓGICA DE TROCA DE ABAS E SALVAMENTO ---
+// --- FUNÇÕES DE MANIPULAÇÃO DO DRAG & DROP ---
+let draggingElement = null;
+
+function handleDragStart(e) {
+    draggingElement = this;
+    this.style.opacity = '0.4';
+    
+    // Define as informações necessárias para a troca de posição
+    e.dataTransfer.effectAllowed = 'move';
+    e.dataTransfer.setData('text/plain', this.dataset.index);
+    e.dataTransfer.setData('aba', this.parentElement.dataset.aba);
+}
+
+function handleDragOver(e) {
+    if (e.preventDefault) {
+        e.preventDefault(); // Necessário para permitir o "Drop"
+    }
+    e.dataTransfer.dropEffect = 'move';
+    return false;
+}
+
+function handleDrop(e) {
+    e.stopPropagation();
+    e.preventDefault();
+
+    const fromIndex = parseInt(e.dataTransfer.getData('text/plain'));
+    const toIndex = parseInt(this.dataset.index);
+    const abaOrigem = e.dataTransfer.getData('aba');
+    const abaDestino = this.parentElement.dataset.aba;
+
+    // Garante que só reordena se estiver na mesma aba
+    if (draggingElement !== this && abaOrigem === abaDestino) {
+        const abaLinks = bancoDeLinks[abaDestino];
+        
+        // Remove o item da posição antiga e insere na nova posição
+        const [reorderedItem] = abaLinks.splice(fromIndex, 1);
+        abaLinks.splice(toIndex, 0, reorderedItem);
+
+        // Salva a nova configuração permanentemente no cache/localStorage do PC
+        localStorage.setItem('bancoDeLinksSalvos', JSON.stringify(bancoDeLinks));
+
+        // Renderiza novamente a tela refletindo as novas posições
+        renderAllTabs();
+    }
+}
+
+function handleDragEnd() {
+    this.style.opacity = '1';
+}
+
+// Inicializa a renderização dos links
+renderAllTabs();
+
+// --- 3. LÓGICA DE TROCA DE ABAS ---
 function openTab(evt, tabName) {
     const tabcontents = document.getElementsByClassName("tab-content");
     for (let i = 0; i < tabcontents.length; i++) {
@@ -206,7 +265,8 @@ function openTab(evt, tabName) {
     if (evt) {
         evt.currentTarget.classList.add("active");
     } else {
-        document.querySelector(`.tab-button[onclick*="${tabName}"]`).classList.add("active");
+        const btn = document.querySelector(`.tab-button[onclick*="${tabName}"]`);
+        if (btn) btn.classList.add("active");
     }
 
     // Salva a aba escolhida na memória do navegador
