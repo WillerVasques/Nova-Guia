@@ -70,7 +70,7 @@ const bancoDeLinks = {
          icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/TERDIS.jpg"},
         { nome: "SisBol",    url: "https://www.dpm.mb/sisbol-externo",
          icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/sisbol.jpg"},
-        { nome: "Trigramas",    url: "http://www.ciaw.mb/drupal/sites/default/files/arquivoszipados/Lista%20de%20Trigramas.pdf",
+        { nome: "Trigramas",    url: "https://www.com1dn.mb/sites/default/files/doc-pub-diversos/Trigramas%20para%20Redu%C3%A7%C3%A3o%20de%20textos%20de%20Mensagens.pdf",
          icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/trigramas.png"},
         { nome: "Transparencia",    url: "https://portaldatransparencia.gov.br/servidores" },
         
