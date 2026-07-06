@@ -72,7 +72,7 @@ const bancoDeLinks = {
          icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/sisbol.jpg"},
         { nome: "Trigramas",    url: "https://www.com1dn.mb/sites/default/files/doc-pub-diversos/Trigramas%20para%20Redu%C3%A7%C3%A3o%20de%20textos%20de%20Mensagens.pdf",
          icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/trigramas.png"},
-        { nome: "Transparencia",    url: "https://portaldatransparencia.gov.br/servidores/consulta?paginacaoSimples=false&tamanhoPagina=&offset=&direcaoOrdenacao=asc&orgaosServidorLotacao=OR70000&situacao=1&tipo=2&colunasSelecionadas=detalhar%2Ctipo%2Ccpf%2Cnome%2CorgaoServidorLotacao%2Cmatricula%2Csituacao%2Cfuncao%2Ccargo%2Cquantidade&t=6HUy4F7tJ7MgShXwMYOw&ordenarPor=nome&direcao=asc" },
+        { nome: "Transparencia",    url: "https://portaldatransparencia.gov.br/url/0bd0c6b6" },
         
         { nome: "MS Cloud",    url: "https://m365.cloud.microsoft/search" },
         
@@ -106,7 +106,7 @@ const bancoDeLinks = {
          icone: "https://img.icons8.com/?size=100&id=g7UKWvv49CoI&format=png&color=000000"},
         { nome: "SIGAA",         url: "https://si3.ufc.br/sigaa/verTelaLogin.do",
          icone: "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhtt5-DNknOSKYQKWcR3subKjzFrbHovCYUf9t0Jv9XvEdJXEAB-2nBJNgBsMcMs5diQ4jNOw6YeAhZDHkO8Mche9aMUVSWYV9zTX7NAgb-POr5X6_gu8eInqUWx37C9nz71ocK5ekMs98/s400/brasao.png"},
-        { nome: "Servidores",    url: "https://portaldatransparencia.gov.br/servidores/consulta?paginacaoSimples=false&tamanhoPagina=&offset=&direcaoOrdenacao=asc&orgaosServidorLotacao=OR70000&situacao=1&tipo=2&colunasSelecionadas=detalhar%2Ctipo%2Ccpf%2Cnome%2CorgaoServidorLotacao%2Cmatricula%2Csituacao%2Cfuncao%2Ccargo%2Cquantidade&t=6HUy4F7tJ7MgShXwMYOw&ordenarPor=nome&direcao=asc" },
+        { nome: "Servidores",    url: "https://portaldatransparencia.gov.br/url/0bd0c6b6" },
         { nome: "Pelando",       url: "https://www.pelando.com.br/" },
         { nome: "Wise Up",       url: "https://online.wiseup.com/login?lang=pt" },
         { nome: "YouTube",       url: "https://www.youtube.com/" },
