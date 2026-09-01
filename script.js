@@ -21,9 +21,7 @@ imgLoader.onload = () => {
 
 // --- 1. SEUS DADOS CENTRALIZADOS AQUI ---
 const bancoDeLinks = {
-    "trabalho": [
-        { nome: "Bussola",    url: "http://bussola.mb/search?site=default_collection&client=default_frontend&output=xml_no_dtd&proxystylesheet=default_frontend&proxycustom=%3CHOME/%3E",
-         icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/bussola_redimensionado.jpg"},        
+    "trabalho": [     
         { nome: "Sigad",    url: "https://prod.sigad.mar.mil.br/apps/mensagemAdministrativa/pesquisar-mensagens",
          icone: "https://raw.githubusercontent.com/WillerVasques/Nova-Guia/refs/heads/main/Imagens/supp.png"},
         { nome: "Zimbra",    url: "https://webmail.marinha.mil.br" },
